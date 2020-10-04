@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <!--[if IE]>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <![endif]-->
+    <title>Vybe Staking Calculator</title>
+    <!-- BOOTSTRAP CORE STYLE  -->
+    <link href="assets/css/bootstrap.css" rel="stylesheet" />
+    <!-- FONT AWESOME STYLE  -->
+    <link href="assets/css/font-awesome.css" rel="stylesheet" />
+    <!-- CUSTOM STYLE  -->
+    <link href="assets/css/style.css" rel="stylesheet" />
+    <!-- GOOGLE FONT -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+
+</head>
+<body>
+    <div class="content-wrapper">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="panel panel-info">
+                <div class="panel-heading">
+                    All Vybe
+                </div>
+                <div class="panel-body">
+                  <div class="col-md-6">
+                    Total Vybe:<br>
+                    Total staked:<br>
+                    Monthly reward rate:<br>
+                    Monthly rewards pool:<br>
+                    Monthly dev rewards:
+                  </div>
+                  <div class="col-md-6" id="allvybe">
+                    Loading...<br>
+                    --<br>
+                    --<br>
+                    --<br>
+                    --
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="panel panel-danger">
+                <div class="panel-heading">
+                    Your Vybe
+                </div>
+                <div class="panel-body text-center">
+                  <p>I currently have <input id="mystake" size="9" type="text" value="300" style="text-align: center;"/> Vybe staked, which will earn...</p>
+                  <p id="rewards">
+                    -- per minute<br>
+                    -- per hours<br>
+                    -- per day
+                  </p>
+                  <p>If I add an additional <input id="addstake" size="9" type="text" value="50" style="text-align: center;"/> Vybe, I will earn...</p>
+                  <p id="newrewards">
+                    -- per minute<br>
+                    -- per hours<br>
+                    -- per day
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+   
+    <!-- CORE JQUERY  -->
+    <script src="assets/js/jquery-1.10.2.js"></script>
+    <!-- BOOTSTRAP SCRIPTS  -->
+    <script src="assets/js/bootstrap.js"></script>
+      <!-- CUSTOM SCRIPTS  -->
+    <script src="assets/js/vybe.js"></script>
+</body>
+</html>
