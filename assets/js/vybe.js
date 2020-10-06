@@ -13,6 +13,17 @@
     AddStake: document.getElementById("addstake"),
 
     Load: async function () {
+        // Get cookies for input fields
+        let cooks = document.cookie.split(";");
+        for (let i = 0; i < cooks.length; i++) {
+            let parts = cooks[i].split("=");
+          if (parts[0] == "inputs") {
+              let inputs = parts[1].split(",");
+              Vybe.MyStake.value = inputs[0];
+              Vybe.AddStake.value = inputs[1];
+          }
+        }
+
         let response = await fetch("https://script.googleusercontent.com/macros/echo?user_content_key=ZGSqfypKVc8Cz7NjoBFjQZWByF09r6nw18nT1xJgdBrR6yl8bqta_pBNRGrgfsVvtAAD7vy_YQ97j-iVSb39dpwA4LbJk5wzm5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnFHonSFmiw2Ci8COw7AERjXyZ-dCoDB7x6Jd9Uc5jZx9b0CwV7La4qjEaV5J3l6gbjT5J-DRl3lU&lib=Mk3uQM45ouZD1H-KyIcOpQnY_oMzZeP9Y");
         if (response.ok) {
             let json = await response.json();
@@ -80,6 +91,9 @@
             f(newperminute, 2) + " per minute (+" + f(newperminute - perminute, 2) + ")<br>" +
             f(newperhour, 2) + " per hour (+" + f(newperhour - perhour, 2) + ")<br>" +
             f(newperday, 2) + " per day (+" + f(newperday - perday, 2) + ")";
+        
+        // Update cookies
+        document.cookie = "inputs=" + mystake + "," + addstake + "; expires=" + new Date(new Date().getTime() + 60000 * 60 * 24 * 14) + ";";
     },
 
     Fail: function (msg) {
