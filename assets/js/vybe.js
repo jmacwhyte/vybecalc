@@ -35,12 +35,14 @@
                 Vybe.Stats.Staked = json.staking;
 
                 // Update stats
-                let months = Math.floor((new Date().getTime() - new Date("Sep-10-2020 06:42:01 AM").getTime()) / (60000 * 60 * 24 * 30))
+                let today = new Date().getTime()
+                let launch = new Date("Sep-10-2020 06:42:01 AM").getTime()
+                let months = Math.floor((today - launch) / (60000 * 60 * 24 * 30))
                 Vybe.Stats.Rate = 1 / Math.min(20 + (months * 5), 50);
                 
                 // Debug info for if this returns NaN (seen by one user)
                 if (isNaN(Vybe.Stats.Rate)) {
-                    console.log((new Date() - new Date("Sep-10-2020 06:42:01 AM")) + " / " + (60000 * 60 * 24 * 30))
+                    console.log("today: " + today + " launch: " + launch)
                     console.log(months + " * 5 = " + (months * 5) + ", 1 / " + Math.min(20 + (months * 5), 50))
 
                     // Hardcode current value to fix it for that user
@@ -69,7 +71,7 @@
     UpdateYourVybe: function () {
         let emptystate = "-- per second<br>-- per minute<br>-- per hours<br>-- per day";
 
-        let mystake = Vybe.MyStake.value;
+        let mystake = Vybe.MyStake.value.replace(',', '');
         if (isNaN(mystake) || Vybe.Stats.Total == "") {
             Vybe.Rewards.innerHTML = emptystate;
             Vybe.NewRewards.innerHTML = emptystate;
@@ -85,7 +87,7 @@
         let f = Vybe.FormatNumber;
         Vybe.Rewards.innerHTML = f(perminute, 2) + " per minute<br>" + f(perhour, 2) + " per hour<br>" + f(perday, 2) + " per day";
 
-        let addstake = Vybe.AddStake.value;
+        let addstake = Vybe.AddStake.value.replace(',', '');
         if (isNaN(addstake)) {
             Vybe.NewRewards.innerHTML = emptystate;
             return
