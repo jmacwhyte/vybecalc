@@ -35,20 +35,9 @@
                 Vybe.Stats.Staked = json.staking;
 
                 // Update stats
-                let today = new Date().getTime()
-                let launch = new Date("Sep-10-2020 06:42:01 AM").getTime()
-                let months = Math.floor((today - launch) / (60000 * 60 * 24 * 30))
+                let months = Math.floor((new Date() - 1599716521000) / (60000 * 60 * 24 * 30))
                 Vybe.Stats.Rate = 1 / Math.min(20 + (months * 5), 50);
                 
-                // Debug info for if this returns NaN (seen by one user)
-                if (isNaN(Vybe.Stats.Rate)) {
-                    console.log("today: " + today + " launch: " + launch)
-                    console.log(months + " * 5 = " + (months * 5) + ", 1 / " + Math.min(20 + (months * 5), 50))
-
-                    // Hardcode current value to fix it for that user
-                    Vybe.Stats.Rate = 0.04
-                }
-
                 Vybe.Stats.Pool = Vybe.Stats.Total * Vybe.Stats.Rate;
                 Vybe.Stats.Dev = Vybe.Stats.Pool / 20;
 
