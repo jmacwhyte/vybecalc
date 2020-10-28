@@ -44,12 +44,19 @@
                 // Update our display
                 let s = Vybe.Stats;
                 let f = Vybe.FormatNumber;
+                let expectedperday = s.Pool * (100 / (s.Staked + 100)) / 30;
+                
+                // Find next reward drop date
+                let nextdate = new Date(1599716521000 + (60000 * 60 * 24 * 30) * (months + 1)).toLocaleDateString("en-US", { day: 'numeric', month: 'short' })
+                
                 Vybe.AllVybe.innerHTML =
                     f(s.Total, 0) + "<br>" +
                     f(s.Staked, 0) + "<br>" +
                     (s.Rate * 100).toFixed(2) + "%<br>" +
                     f(s.Pool, 0) + "<br>" +
-                    f(s.Dev, 0);
+                    f(s.Dev, 0) + "<br><br>" +
+                    f(expectedperday, 2) + "%<br>" +
+                    nextdate;
                 
                 // Update our user's display info
                 Vybe.UpdateYourVybe();
